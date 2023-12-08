@@ -1,67 +1,55 @@
 <template>
   <div id="app">
     <nav id="nav-main" class="wrapper-navigation">
-      <ol>
-        <li v-for="item in navItems" :key="item.id">
-          <router-link :to="item.link" class="nav-link" active-class="active-link">
-            {{ item.label }}
-          </router-link>
-        </li>
-      </ol>
+      <div v-for="item in navItems" :key="item.id" class="nav-row">
+        <router-link :to="item.link" class="nav-link" active-class="active-link">
+          {{ item.label }}
+        </router-link>
+      </div>
     </nav>
   </div>
 </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        navItems: [
-                { id: 1, label: 'ENCRYPTION', link: '/cipher' },
-                { id: 2, label: 'DECRYPTION', link: '/decipher' },
-            ]
-      };
-    },
-    methods: {
-      changeTab(tab) {
-        this.currentTab = tab;
-        this.$emit('tabChange', tab);
-      },
-    },
-  };
-  </script>
+<script>
+export default {
+  data() {
+    return {
+      navItems: [
+        { id: 1, label: 'ENCRYPTION', link: '/cipher' },
+        { id: 2, label: 'DECRYPTION', link: '/decipher' },
+      ]
+    };
+  }
+};
+</script>
   
-  <style scoped>
-  /* Add your styling for the component here */
-  #nav-main {
-    padding: 10px;
-  }
+<style scoped>
+#nav-main {
+  padding: 10px;
+}
 
-  #nav-main ol {
-    list-style: none;
-    padding: 0;
-  }
+#nav-main .nav-row {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
 
-  #nav-main li {
-    display: inline-block;
-    margin-right: 20px;
-    margin: 10px;
-  }
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s, opacity 0.3s;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-  .nav-link {
-    text-decoration: none;
-    color: white;
-    font-weight: bold; /* Make the text bold */
-    transition: background-color 0.3s, opacity 0.3s;
-  }
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
-  .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1); 
-    padding: 10/* Semi-transparent white on hover */
-  }
-
-  .active-link {
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white when active */
-  }
-  </style>
+.active-link {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+</style>
   

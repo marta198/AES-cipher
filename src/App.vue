@@ -1,16 +1,16 @@
-<!-- App.vue -->
-
 <template>
   <div id="app">
-    <div class="navigation-column">
-        <NavigationComponent/>
+    <div>
+      <header class="header">AES</header>
+    </div>
+    <div class="row">
+      <div class="navigation-column">
+        <NavigationComponent />
       </div>
-
-      
       <div class="router-view-column">
         <router-view />
       </div>
-
+    </div>
   </div>
 </template>
 
@@ -24,18 +24,12 @@ export default {
     };
   },
   components: {
-    NavigationComponent,
-  },
-  methods: {
-    changeTab(tab) {
-      this.currentTab = tab;
-    },
-  },
+    NavigationComponent
+  }
 };
 </script>
 
 <style>
-/* Add your global styles here */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -45,29 +39,36 @@ body {
 
 #app {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  height: 100vh; /* Set the height to 100% of the viewport height */
-}
-
-/* .container {
-  display: flex;
   flex-direction: column;
   height: 100vh;
-} */
+}
+
+.header {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding: 10px;
+  background-color: #2c2929;
+  font-size: 5dvh;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
 
 .navigation-column {
-  flex: 1; /* Take up 1/3 of the container width */
-  background-color: #2c2929; /* Add a background color */
+  flex: 1;
+  background-color: #2c2929;
   padding: 20px;
-  box-sizing: border-box; /* Include padding in the width calculation */
+  box-sizing: border-box;
 }
 
 .router-view-column {
-  flex: 5; /* Take up 2/3 of the container width */
-  padding: 20px;
-  /* box-sizing: border-box; Include padding in the width calculation */
-  background-color: #474040; /* Add a background color */
-  color: white; /* Set text color to white */
+  flex: 4;
+  padding: 100px;
+  box-sizing: border-box;
+  background-color: #474040;
+  color: white;
 }
 </style>

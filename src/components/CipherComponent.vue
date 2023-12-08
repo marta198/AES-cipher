@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="input-section">
-      <h2>Plaintext</h2>
       <div class="grid-container">
+        <h2>Plaintext</h2>
         <div v-for="(row, rowIndex) in inputGrid" :key="rowIndex" class="grid-row">
           <div v-for="(cell, colIndex) in row" :key="colIndex" class="grid-cell">
             <input v-model="inputGrid[rowIndex][colIndex]" @input="validateInput(rowIndex, colIndex)">
@@ -10,21 +10,20 @@
         </div>
       </div>
 
-      <h2>Key</h2>
       <div class="grid-container">
+        <h2>Key</h2>
         <div v-for="(row, rowIndex) in keyGrid" :key="rowIndex" class="grid-row">
           <div v-for="(cell, colIndex) in row" :key="colIndex" class="grid-cell">
             <input v-model="keyGrid[rowIndex][colIndex]" @input="validateKey(rowIndex, colIndex)">
           </div>
         </div>
       </div>
-
     </div>
 
     <button @click="encrypt" class="btn">Encrypt</button>
 
-    <h2>Ciphertext</h2>
     <div class="grid-container">
+      <h2>Ciphertext</h2>
       <div v-for="(row, rowIndex) in transpose(outputGrid)" :key="rowIndex" class="grid-row">
         <div v-for="(cell, colIndex) in row" :key="colIndex" class="grid-cell">
           {{ cell }}
@@ -51,7 +50,7 @@ export default {
       value = value.toUpperCase();
       if (!/^[0-9A-F]{0,2}$/.test(value)) {
         this.keyGrid[rowIndex][colIndex] = "";
-        console.error('The values should be in hexidecimal format');
+        window.alert('The values should be in hexadecimal format');
       }
     },
     validateInput(rowIndex, colIndex) {
@@ -59,7 +58,7 @@ export default {
       value = value.toUpperCase();
       if (!/^[0-9A-F]{0,2}$/.test(value)) {
         this.inputGrid[rowIndex][colIndex] = "";
-        console.error('The values should be in hexidecimal format');
+        window.alert('The values should be in hexadecimal format');
       }
     },
     transpose(array) {
@@ -72,7 +71,7 @@ export default {
 
       // Ensures that the key and input matrices are non-empty before proceeding:
       if (keyMatrix.some(row => row.some(cell => cell === '')) || inputMatrix.some(row => row.some(cell => cell === ''))) {
-        console.error('Key and input matrices must be non-empty');
+        window.alert('All fields should be filled out before encryption');
         return;
       }
 
@@ -107,7 +106,7 @@ export default {
 .input-section {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .grid-container {
@@ -115,6 +114,8 @@ export default {
   flex-direction: column;
   margin-bottom: 20px;
   align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .grid-row {
@@ -138,11 +139,19 @@ input {
 }
 
 .btn {
-  align-items: center;
+  background-color: #ccc;
+  font-weight: bold;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 </style>
